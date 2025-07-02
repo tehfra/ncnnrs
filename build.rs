@@ -25,6 +25,7 @@ fn main() {
         .allowlist_function("ncnn.*")
         .allowlist_var("NCNN.*")
         .allowlist_type("ncnn.*")
+        .opaque_type("std::vector.*")
         .generate()
         .expect("Unable to generate bindings");
 
