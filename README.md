@@ -1,3 +1,5 @@
+Changed Build.rs so that it cross-compiles to Windows with the gnu toolchain.
+
 ## ncnnrs
 
 > 现有的 tpoisonooo/rust-ncnn 库，在编译阶段全量下载并编译 ncnn 库，且编译参数已固定，无法适应跨端编译需求。因此本仓库诞生。
