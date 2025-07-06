@@ -20,7 +20,7 @@ fn main() {
     let mut builder = bindgen::Builder::default()
         .header("wrapper.h")
         .clang_arg("-x")
-        .clang_arg("c++") // Use C++ since NCNN headers contain C++ code
+        .clang_arg("c++")
         .clang_arg(format!("-I{}", ncnn_include_dir.display()))
         .allowlist_type("regex")
         .allowlist_function("ncnn.*")
@@ -34,7 +34,6 @@ fn main() {
     let target_arch = std::env::var("CARGO_CFG_TARGET_ARCH").unwrap_or_default();
 
     if target_arch == "x86_64" && target_os == "windows" && target_env == "gnu" {
-        // Find MinGW paths
         builder = builder
             .clang_arg("-target")
             .clang_arg("x86_64-w64-mingw32")
@@ -54,8 +53,8 @@ fn main() {
             .clang_arg("-D_WIN32")
             .clang_arg("-D_WIN64")
             .clang_arg("-D__MINGW64__")
-            .clang_arg("-D_WIN32_WINNT=0x0602") // Windows 8
-            .clang_arg("-DWINVER=0x0602")
+            .clang_arg("-D_WIN32_WINNT=0x0601") // Windows 7
+            .clang_arg("-DWINVER=0x0601")
             // Disable CPU features to avoid target-specific builtin conflicts
             .clang_arg("-mno-sse")
             .clang_arg("-mno-sse2")
